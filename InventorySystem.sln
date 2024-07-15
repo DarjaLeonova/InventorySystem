@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorySystem", "Inventor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorySystem.Data", "InventorySystem.Data\InventorySystem.Data.csproj", "{418329D7-29A6-4DE5-9B91-9386CA9092D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorySystem.Tests", "InventorySystem.Tests\InventorySystem.Tests.csproj", "{4168945A-6F27-470F-8E29-12BC68D92D65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorySystem.BLL", "InventorySystem.BLL\InventorySystem.BLL.csproj", "{67220960-35C5-4CF2-A2D0-4900F3E4F19E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{418329D7-29A6-4DE5-9B91-9386CA9092D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{418329D7-29A6-4DE5-9B91-9386CA9092D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{418329D7-29A6-4DE5-9B91-9386CA9092D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4168945A-6F27-470F-8E29-12BC68D92D65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4168945A-6F27-470F-8E29-12BC68D92D65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4168945A-6F27-470F-8E29-12BC68D92D65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4168945A-6F27-470F-8E29-12BC68D92D65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67220960-35C5-4CF2-A2D0-4900F3E4F19E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67220960-35C5-4CF2-A2D0-4900F3E4F19E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67220960-35C5-4CF2-A2D0-4900F3E4F19E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67220960-35C5-4CF2-A2D0-4900F3E4F19E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

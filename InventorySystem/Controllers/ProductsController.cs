@@ -1,4 +1,6 @@
-﻿using InventorySystem.Data.Data;
+﻿using InventorySystem.BLL.Interfaces;
+using InventorySystem.BLL.Models;
+using InventorySystem.Data.Data;
 using InventorySystem.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -6,17 +8,17 @@ using Microsoft.EntityFrameworkCore;
 namespace InventorySystem.Controllers;
 public class ProductsController : Controller
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IProductService _service;
 
-    public ProductsController(ApplicationDbContext context)
+    public ProductsController(IProductService service)
     {
-        _context = context;
+        _service = service;
     }
 
     // GET: Products
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Products.ToListAsync());
+        return View(await _service.GetAllAsync());
     }
 
     // GET: Products/Create
@@ -27,38 +29,28 @@ public class ProductsController : Controller
 
     // POST: Products/Create
     [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Quantity")] Product product)
+    public async Task<IActionResult> Create(ProductModel product)
     {
         if (ModelState.IsValid)
         {
-            _context.Add(product);
-            await _context.SaveChangesAsync();
+            await _service.AddAsync(product);
             return RedirectToAction(nameof(Index));
         }
+
         return View(product);
     }
 
     // GET: Products/Edit/5
-    public async Task<IActionResult> Edit(int? id)
+    public async Task<IActionResult> Edit(int id)
     {
-        if (id == null)
-        {
-            return NotFound();
-        }
-
-        var product = await _context.Products.FindAsync(id);
-        if (product == null)
-        {
-            return NotFound();
-        }
+        var product = await _service.GetByIdAsync(id);
         return View(product);
     }
 
     // POST: Products/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Quantity")] Product product)
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Quantity")] ProductModel product)
     {
         if (id != product.Id)
         {
@@ -67,27 +59,10 @@ public class ProductsController : Controller
 
         if (ModelState.IsValid)
         {
-            try
-            {
-                _context.Update(product);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(product.Id))
-                {
-                    return NotFound();
-                }
 
-                throw;
-            }
+            await _service.UpdateAsync(product);
             return RedirectToAction(nameof(Index));
         }
         return View(product);
-    }
-
-    private bool ProductExists(int id)
-    {
-        return _context.Products.Any(e => e.Id == id);
     }
 }
