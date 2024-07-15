@@ -33,10 +33,10 @@ public class ProductRepositoryTests
     public async Task AddAsync_ShouldAddItem()
     {
         // Arrange
-        var todoItem = new Product() { Id = 1, Name = "Test", Description = "desc", Price = 11, Quantity = 22};
+        var product = new Product() { Id = 1, Name = "Test", Description = "desc", Price = 11, Quantity = 22};
 
         // Act
-        await _repository.AddAsync(todoItem);
+        await _repository.AddAsync(product);
         var result = await _context.Products.FirstOrDefaultAsync(t => t.Name == "Test");
         
         // Assert
@@ -62,14 +62,14 @@ public class ProductRepositoryTests
     public async Task UpdateAsync_ShouldUpdateItem()
     {
         // Arrange
-        var todoItem = new Product() { Id = 1, Name = "Test", Description = "desc", Price = 11, Quantity = 22};
-        _context.Products.Add(todoItem);
+        var product = new Product() { Id = 1, Name = "Test", Description = "desc", Price = 11, Quantity = 22};
+        _context.Products.Add(product);
         await _context.SaveChangesAsync();
     
         // Act
-        todoItem.Name = "test1";
-        await _repository.UpdateAsync(todoItem);
-        var result = await _context.Products.FirstOrDefaultAsync(t => t.Id == todoItem.Id);
+        product.Name = "test1";
+        await _repository.UpdateAsync(product);
+        var result = await _context.Products.FirstOrDefaultAsync(t => t.Id == product.Id);
     
         // Assert
         Assert.That(result.Name, Is.EqualTo("test1"));
