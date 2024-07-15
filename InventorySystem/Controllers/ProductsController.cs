@@ -1,24 +1,14 @@
 ﻿using InventorySystem.BLL.Interfaces;
 using InventorySystem.BLL.Models;
-using InventorySystem.Data.Data;
-using InventorySystem.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace InventorySystem.Controllers;
-public class ProductsController : Controller
+public class ProductsController(IProductService service) : Controller
 {
-    private readonly IProductService _service;
-
-    public ProductsController(IProductService service)
-    {
-        _service = service;
-    }
-
     // GET: Products
     public async Task<IActionResult> Index()
     {
-        return View(await _service.GetAllAsync());
+        return View(await service.GetAllAsync());
     }
 
     // GET: Products/Create
@@ -33,7 +23,7 @@ public class ProductsController : Controller
     {
         if (ModelState.IsValid)
         {
-            await _service.AddAsync(product);
+            await service.AddAsync(product);
             return RedirectToAction(nameof(Index));
         }
 
@@ -43,7 +33,7 @@ public class ProductsController : Controller
     // GET: Products/Edit/5
     public async Task<IActionResult> Edit(int id)
     {
-        var product = await _service.GetByIdAsync(id);
+        var product = await service.GetByIdAsync(id);
         return View(product);
     }
 
@@ -59,10 +49,10 @@ public class ProductsController : Controller
 
         if (ModelState.IsValid)
         {
-
-            await _service.UpdateAsync(product);
+            await service.UpdateAsync(product);
             return RedirectToAction(nameof(Index));
         }
+
         return View(product);
     }
 }
