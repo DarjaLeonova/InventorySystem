@@ -68,17 +68,16 @@ Tech stack:
 # Short feedback: 
 1️⃣ Was it easy to complete the task using AI?
 <br>
-Yes, from the first prompt ChatGPT generated a fully usable application.
+Yes, from the first prompt ChatGPT generated a usable application.
 <br>
 2️⃣ How long did the task take you to complete?
 <br>
-To complete this task it took me about ~ 3h. 
+To complete this task it took me about ~ 4h. 
 <br>
 3️⃣ Was the code ready to run after generation? What did you have to change to make it usable?
 <br>
 The code was ready to run after generation. 
-The one thing that wasn't working correctly was the Update method. 
-It wasn't updating the existing product, it was creating a new one.
+However, the main problems occurred when it was time to test the application. Since there wasn't normal DAL and BLL I needed to add these layers and test them accordingly.
 <br>
 4️⃣ Which challenges did you face during the completion of the task?
 <br>
@@ -86,6 +85,6 @@ The challenge was to connect to MySQL.
 <br>
 5️⃣ Which specific prompts did you learn as a good practice to complete the task?
 <br>
-By using task description and giving a context for ChatGPT, I was able to efficiently complete the task of creating the inventory management system. 
+By using task descriptions and giving a context for ChatGPT, I was able to complete the task of creating the inventory management system. 
 The prompts provided clear and structured guidance at each step, ensuring a smooth development process.
 
